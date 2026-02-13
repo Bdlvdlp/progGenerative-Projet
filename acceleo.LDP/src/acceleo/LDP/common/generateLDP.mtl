@@ -1,0 +1,47 @@
+[comment encoding = UTF-8 /]
+[module generateLDP('http://LDP/1.0')]
+
+[template public generateElement(aProcessus : Processus)]
+[comment @main/]
+[file (aProcessus.nom + '.java', false, 'UTF-8')]
+public class [aProcessus.nom/] {
+	
+	public static void main(String['['/][']'/] argv) {
+[for (act : Activite | aProcessus.elements->filter(Activite))]
+[for (initVar : InitVariable | act.actions->filter(InitVariable))]
+[if (initVar.valeurInitiale <> null and initVar.valeurInitiale <> '')]
+		[initVar.type.toString().toLowerCase()/] [initVar.nomVariable/] = [initVar.valeurInitiale/];
+[/if]
+[/for]
+[/for]
+[for (act : Activite | aProcessus.elements->filter(Activite))]
+[for (instObj : InstantiationObjet | act.actions->filter(InstantiationObjet))]
+		[instObj.nomClasse/] [instObj.nomVariable/] = new [instObj.nomClasse/]();
+[/for]
+[/for]
+[for (act : Activite | aProcessus.elements->filter(Activite))]
+[generateComputations(act)/]
+[/for]
+	}
+}
+[/file]
+[/template]
+
+[template public generateComputations(act : Activite)]
+[let initVars : Sequence(InitVariable) = act.actions->filter(InitVariable)->select(iv : InitVariable | iv.valeurInitiale = null or iv.valeurInitiale = '')->asSequence()]
+[let methodCalls : Sequence(AppelMethode) = act.actions->filter(AppelMethode)->asSequence()]
+[if (initVars->size() > 0 and methodCalls->size() > 0)]
+[let initVar : InitVariable = initVars->first()]
+[let appel : AppelMethode = methodCalls->first()]
+		[initVar.type.toString().toLowerCase()/] [initVar.nomVariable/];
+		[initVar.nomVariable/] = [appel.objetCible/].[appel.nomMethode/]([for (param : String | appel.parametres) separator(', ')][param/][/for]);
+[/let]
+[/let]
+[else]
+[for (appel : AppelMethode | methodCalls)]
+		[appel.objetCible/].[appel.nomMethode/]([for (param : String | appel.parametres) separator(', ')][param/][/for]);
+[/for]
+[/if]
+[/let]
+[/let]
+[/template]

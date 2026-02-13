@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LDP:Processus xmi:version="2.0" 
+    xmlns:xmi="http://www.omg.org/XMI" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:LDP="http://LDP/1.0" 
+    nom="CalculFactorielle">
+  
+  <!-- Activité 1: Initialisation des variables -->
+  <elements xsi:type="LDP:Activite" nom="InitVariables" suivante="//@elements.1">
+    <actions xsi:type="LDP:InitVariable" nom="initN" nomVariable="n" type="int" valeurInitiale="6"/>
+    <actions xsi:type="LDP:InitVariable" nom="initPuiss" nomVariable="puiss" type="int" valeurInitiale="3"/>
+    <actions xsi:type="LDP:InitVariable" nom="initX" nomVariable="x" type="int" valeurInitiale="100"/>
+  </elements>
+  
+  <!-- Activité 2: Instanciation des objets -->
+  <elements xsi:type="LDP:Activite" nom="CreationObjets" precedente="//@elements.0" suivante="//@elements.2">
+    <actions xsi:type="LDP:InstantiationObjet" nom="createCalcul" nomClasse="Calcul" nomVariable="calc"/>
+    <actions xsi:type="LDP:InstantiationObjet" nom="createLogger" nomClasse="Logger" nomVariable="log"/>
+  </elements>
+  
+  <!-- Activité 3: Calcul factorielle -->
+  <elements xsi:type="LDP:Activite" nom="CalculFactorielle" precedente="//@elements.1" suivante="//@elements.3">
+    <actions xsi:type="LDP:InitVariable" nom="declareResFact" nomVariable="resFact" type="int"/>
+    <actions xsi:type="LDP:AppelMethode" nom="callFactorial" nomMethode="factorial" objetCible="calc" resultat="resFact">
+      <parametres>n</parametres>
+    </actions>
+  </elements>
+  
+  <!-- Activité 4: Calcul racine -->
+  <elements xsi:type="LDP:Activite" nom="CalculRacine" precedente="//@elements.2" suivante="//@elements.4">
+    <actions xsi:type="LDP:InitVariable" nom="declareResSqrt" nomVariable="resSqrt" type="int"/>
+    <actions xsi:type="LDP:AppelMethode" nom="callSqrt" nomMethode="sqrt" objetCible="calc" resultat="resSqrt">
+      <parametres>resFact</parametres>
+    </actions>
+  </elements>
+  
+  <!-- Activité 5: Calcul puissance -->
+  <elements xsi:type="LDP:Activite" nom="CalculPuissance" precedente="//@elements.3" suivante="//@elements.5">
+    <actions xsi:type="LDP:InitVariable" nom="declareResPower" nomVariable="resPower" type="int"/>
+    <actions xsi:type="LDP:AppelMethode" nom="callPower" nomMethode="power" objetCible="calc" resultat="resPower">
+      <parametres>resSqrt</parametres>
+      <parametres>puiss</parametres>
+    </actions>
+  </elements>
+  
+  <!-- Activité 6: Calcul division -->
+  <elements xsi:type="LDP:Activite" nom="CalculDivision" precedente="//@elements.4" suivante="//@elements.6">
+    <actions xsi:type="LDP:InitVariable" nom="declareResDiv" nomVariable="resDiv" type="int"/>
+    <actions xsi:type="LDP:AppelMethode" nom="callDivision" nomMethode="division" objetCible="calc" resultat="resDiv">
+      <parametres>resPower</parametres>
+      <parametres>x</parametres>
+    </actions>
+  </elements>
+  
+  <!-- Activité 7: Affichage du résultat -->
+  <elements xsi:type="LDP:Activite" nom="AffichageResultat" precedente="//@elements.5">
+    <actions xsi:type="LDP:AppelMethode" nom="callPrintValue" nomMethode="printValue" objetCible="log">
+      <parametres>resDiv</parametres>
+    </actions>
+  </elements>
+  
+  <!-- Début et Fin du processus -->
+  <debut nom="DebutProcessus" reference="//@elements.0"/>
+  <fin nom="FinProcessus" reference="//@elements.6"/>
+  
+</LDP:Processus>
