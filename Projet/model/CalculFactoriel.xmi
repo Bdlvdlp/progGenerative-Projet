@@ -3,7 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI" 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
     xmlns:LDP="http://LDP/1.0" 
-    nom="CalculFactorielle">
+    nom="CalculFactoriel">
   
   <!-- Activité 1: Initialisation des variables -->
   <elements xsi:type="LDP:Activite" nom="InitVariables" suivante="//@elements.1">
@@ -19,7 +19,7 @@
   </elements>
   
   <!-- Activité 3: Calcul factorielle -->
-  <elements xsi:type="LDP:Activite" nom="CalculFactorielle" precedente="//@elements.1" suivante="//@elements.3">
+  <elements xsi:type="LDP:Activite" nom="CalculFactoriel" precedente="//@elements.1" suivante="//@elements.3">
     <actions xsi:type="LDP:InitVariable" nom="declareResFact" nomVariable="resFact" type="int"/>
     <actions xsi:type="LDP:AppelMethode" nom="callFactorial" nomMethode="factorial" objetCible="calc" resultat="resFact">
       <parametres>n</parametres>

@@ -590,6 +590,98 @@ public interface LDPPackage extends EPackage {
 	int APPEL_METHODE_OPERATION_COUNT = ACTION_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link LDP.impl.FourcheImpl <em>Fourche</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see LDP.impl.FourcheImpl
+	 * @see LDP.impl.LDPPackageImpl#getFourche()
+	 * @generated
+	 */
+	int FOURCHE = 10;
+
+	/**
+	 * The feature id for the '<em><b>Nom</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOURCHE__NOM = ELEMENT_PROCESSUS__NOM;
+
+	/**
+	 * The feature id for the '<em><b>Branches</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOURCHE__BRANCHES = ELEMENT_PROCESSUS_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Fourche</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOURCHE_FEATURE_COUNT = ELEMENT_PROCESSUS_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Fourche</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOURCHE_OPERATION_COUNT = ELEMENT_PROCESSUS_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link LDP.impl.JonctionImpl <em>Jonction</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see LDP.impl.JonctionImpl
+	 * @see LDP.impl.LDPPackageImpl#getJonction()
+	 * @generated
+	 */
+	int JONCTION = 11;
+
+	/**
+	 * The feature id for the '<em><b>Nom</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JONCTION__NOM = ELEMENT_PROCESSUS__NOM;
+
+	/**
+	 * The feature id for the '<em><b>Branches</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JONCTION__BRANCHES = ELEMENT_PROCESSUS_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Jonction</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JONCTION_FEATURE_COUNT = ELEMENT_PROCESSUS_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Jonction</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JONCTION_OPERATION_COUNT = ELEMENT_PROCESSUS_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link LDP.TypePrimitif <em>Type Primitif</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -597,7 +689,7 @@ public interface LDPPackage extends EPackage {
 	 * @see LDP.impl.LDPPackageImpl#getTypePrimitif()
 	 * @generated
 	 */
-	int TYPE_PRIMITIF = 10;
+	int TYPE_PRIMITIF = 12;
 
 
 	/**
@@ -932,6 +1024,48 @@ public interface LDPPackage extends EPackage {
 	EAttribute getAppelMethode_Resultat();
 
 	/**
+	 * Returns the meta object for class '{@link LDP.Fourche <em>Fourche</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Fourche</em>'.
+	 * @see LDP.Fourche
+	 * @generated
+	 */
+	EClass getFourche();
+
+	/**
+	 * Returns the meta object for the reference list '{@link LDP.Fourche#getBranches <em>Branches</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Branches</em>'.
+	 * @see LDP.Fourche#getBranches()
+	 * @see #getFourche()
+	 * @generated
+	 */
+	EReference getFourche_Branches();
+
+	/**
+	 * Returns the meta object for class '{@link LDP.Jonction <em>Jonction</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Jonction</em>'.
+	 * @see LDP.Jonction
+	 * @generated
+	 */
+	EClass getJonction();
+
+	/**
+	 * Returns the meta object for the reference list '{@link LDP.Jonction#getBranches <em>Branches</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Branches</em>'.
+	 * @see LDP.Jonction#getBranches()
+	 * @see #getJonction()
+	 * @generated
+	 */
+	EReference getJonction_Branches();
+
+	/**
 	 * Returns the meta object for enum '{@link LDP.TypePrimitif <em>Type Primitif</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1231,6 +1365,42 @@ public interface LDPPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute APPEL_METHODE__RESULTAT = eINSTANCE.getAppelMethode_Resultat();
+
+		/**
+		 * The meta object literal for the '{@link LDP.impl.FourcheImpl <em>Fourche</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see LDP.impl.FourcheImpl
+		 * @see LDP.impl.LDPPackageImpl#getFourche()
+		 * @generated
+		 */
+		EClass FOURCHE = eINSTANCE.getFourche();
+
+		/**
+		 * The meta object literal for the '<em><b>Branches</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FOURCHE__BRANCHES = eINSTANCE.getFourche_Branches();
+
+		/**
+		 * The meta object literal for the '{@link LDP.impl.JonctionImpl <em>Jonction</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see LDP.impl.JonctionImpl
+		 * @see LDP.impl.LDPPackageImpl#getJonction()
+		 * @generated
+		 */
+		EClass JONCTION = eINSTANCE.getJonction();
+
+		/**
+		 * The meta object literal for the '<em><b>Branches</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference JONCTION__BRANCHES = eINSTANCE.getJonction_Branches();
 
 		/**
 		 * The meta object literal for the '{@link LDP.TypePrimitif <em>Type Primitif</em>}' enum.

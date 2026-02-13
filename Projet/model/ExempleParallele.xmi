@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LDP:Processus xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:LDP="http://LDP/1.0"
+    nom="ExempleParallele">
+
+  <!-- Activité 0: Initialisation -->
+  <elements xsi:type="LDP:Activite" nom="Init">
+    <actions xsi:type="LDP:InitVariable" nom="initA" nomVariable="a" type="int" valeurInitiale="10"/>
+    <actions xsi:type="LDP:InstantiationObjet" nom="createCalc" nomClasse="Calcul" nomVariable="calc"/>
+    <actions xsi:type="LDP:InstantiationObjet" nom="createLog" nomClasse="Logger" nomVariable="log"/>
+  </elements>
+
+  <!-- Element 1: Fourche - 2 branches parallèles -->
+  <elements xsi:type="LDP:Fourche" nom="Fork1"
+      branches="//@elements.2 //@elements.3"/>
+
+  <!-- Element 2: Branche 1 -->
+  <elements xsi:type="LDP:Activite" nom="Branche1">
+    <actions xsi:type="LDP:InitVariable" nom="declRes1" nomVariable="res1" type="int"/>
+    <actions xsi:type="LDP:AppelMethode" nom="callSquare" nomMethode="square" objetCible="calc" resultat="res1">
+      <parametres>a</parametres>
+    </actions>
+  </elements>
+
+  <!-- Element 3: Branche 2 -->
+  <elements xsi:type="LDP:Activite" nom="Branche2">
+    <actions xsi:type="LDP:InitVariable" nom="declRes2" nomVariable="res2" type="int"/>
+    <actions xsi:type="LDP:AppelMethode" nom="callFactorial" nomMethode="factorial" objetCible="calc" resultat="res2">
+      <parametres>a</parametres>
+    </actions>
+  </elements>
+
+  <!-- Element 4: Jonction - attend les 2 branches -->
+  <elements xsi:type="LDP:Jonction" nom="Join1"
+      branches="//@elements.2 //@elements.3"/>
+
+  <!-- Element 5: Activité après la jonction -->
+  <elements xsi:type="LDP:Activite" nom="Affichage">
+    <actions xsi:type="LDP:AppelMethode" nom="printRes1" nomMethode="printValue" objetCible="log">
+      <parametres>res1</parametres>
+    </actions>
+    <actions xsi:type="LDP:AppelMethode" nom="printRes2" nomMethode="printValue" objetCible="log">
+      <parametres>res2</parametres>
+    </actions>
+  </elements>
+
+  <debut nom="Debut" reference="//@elements.0"/>
+  <fin nom="Fin" reference="//@elements.5"/>
+</LDP:Processus>

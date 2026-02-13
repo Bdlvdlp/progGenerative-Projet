@@ -8,8 +8,10 @@ import LDP.AppelMethode;
 import LDP.Debut;
 import LDP.ElementProcessus;
 import LDP.Fin;
+import LDP.Fourche;
 import LDP.InitVariable;
 import LDP.InstantiationObjet;
+import LDP.Jonction;
 import LDP.LDPFactory;
 import LDP.LDPPackage;
 import LDP.Processus;
@@ -100,6 +102,20 @@ public class LDPPackageImpl extends EPackageImpl implements LDPPackage {
 	 * @generated
 	 */
 	private EClass appelMethodeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass fourcheEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass jonctionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -484,6 +500,46 @@ public class LDPPackageImpl extends EPackageImpl implements LDPPackage {
 	 * @generated
 	 */
 	@Override
+	public EClass getFourche() {
+		return fourcheEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getFourche_Branches() {
+		return (EReference)fourcheEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getJonction() {
+		return jonctionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getJonction_Branches() {
+		return (EReference)jonctionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getTypePrimitif() {
 		return typePrimitifEEnum;
 	}
@@ -558,6 +614,12 @@ public class LDPPackageImpl extends EPackageImpl implements LDPPackage {
 		createEAttribute(appelMethodeEClass, APPEL_METHODE__PARAMETRES);
 		createEAttribute(appelMethodeEClass, APPEL_METHODE__RESULTAT);
 
+		fourcheEClass = createEClass(FOURCHE);
+		createEReference(fourcheEClass, FOURCHE__BRANCHES);
+
+		jonctionEClass = createEClass(JONCTION);
+		createEReference(jonctionEClass, JONCTION__BRANCHES);
+
 		// Create enums
 		typePrimitifEEnum = createEEnum(TYPE_PRIMITIF);
 	}
@@ -597,6 +659,8 @@ public class LDPPackageImpl extends EPackageImpl implements LDPPackage {
 		initVariableEClass.getESuperTypes().add(this.getAction());
 		instantiationObjetEClass.getESuperTypes().add(this.getAction());
 		appelMethodeEClass.getESuperTypes().add(this.getAction());
+		fourcheEClass.getESuperTypes().add(this.getElementProcessus());
+		jonctionEClass.getESuperTypes().add(this.getElementProcessus());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(processusEClass, Processus.class, "Processus", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -639,6 +703,12 @@ public class LDPPackageImpl extends EPackageImpl implements LDPPackage {
 		initEAttribute(getAppelMethode_ObjetCible(), ecorePackage.getEString(), "objetCible", null, 0, 1, AppelMethode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAppelMethode_Parametres(), ecorePackage.getEString(), "parametres", null, 0, -1, AppelMethode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAppelMethode_Resultat(), ecorePackage.getEString(), "resultat", null, 0, 1, AppelMethode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(fourcheEClass, Fourche.class, "Fourche", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFourche_Branches(), this.getActivite(), null, "branches", null, 0, -1, Fourche.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(jonctionEClass, Jonction.class, "Jonction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getJonction_Branches(), this.getActivite(), null, "branches", null, 0, -1, Jonction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(typePrimitifEEnum, TypePrimitif.class, "TypePrimitif");

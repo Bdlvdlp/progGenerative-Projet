@@ -85,6 +85,24 @@ public interface LDPFactory extends EFactory {
 	AppelMethode createAppelMethode();
 
 	/**
+	 * Returns a new object of class '<em>Fourche</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Fourche</em>'.
+	 * @generated
+	 */
+	Fourche createFourche();
+
+	/**
+	 * Returns a new object of class '<em>Jonction</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Jonction</em>'.
+	 * @generated
+	 */
+	Jonction createJonction();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

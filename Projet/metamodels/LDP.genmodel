@@ -51,5 +51,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute LDP.ecore#//AppelMethode/parametres"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute LDP.ecore#//AppelMethode/resultat"/>
     </genClasses>
+    <genClasses ecoreClass="LDP.ecore#//Fourche">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference LDP.ecore#//Fourche/branches"/>
+    </genClasses>
+    <genClasses ecoreClass="LDP.ecore#//Jonction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference LDP.ecore#//Jonction/branches"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -19,29 +19,89 @@ public class [aProcessus.nom/] {
 		[instObj.nomClasse/] [instObj.nomVariable/] = new [instObj.nomClasse/]();
 [/for]
 [/for]
-[for (act : Activite | aProcessus.elements->filter(Activite))]
-[generateComputations(act)/]
+[for (elem : ElementProcessus | aProcessus.elements)]
+[if (elem.oclIsTypeOf(Fourche))]
+[generateFork(elem.oclAsType(Fourche))/]
+[elseif (elem.oclIsTypeOf(Jonction))]
+[generateJoin(elem.oclAsType(Jonction))/]
+[elseif (elem.oclIsTypeOf(Activite))]
+[if (not isBrancheActivite(elem.oclAsType(Activite), aProcessus))]
+[generateComputations(elem.oclAsType(Activite), aProcessus)/]
+[/if]
+[/if]
 [/for]
 	}
 }
 [/file]
 [/template]
 
-[template public generateComputations(act : Activite)]
+[query public isBrancheActivite(act : Activite, proc : Processus) : Boolean =
+	proc.elements->filter(Fourche)->exists(f : Fourche | f.branches->includes(act))
+	or proc.elements->filter(Jonction)->exists(j : Jonction | j.branches->includes(act))
+/]
+
+[query public getBranchVarNames(proc : Processus) : Set(String) =
+	proc.elements->filter(Fourche).branches.actions->filter(InitVariable)
+		->select(iv : InitVariable | iv.valeurInitiale = null or iv.valeurInitiale = '')
+		->collect(iv : InitVariable | iv.nomVariable)->asSet()
+/]
+
+[template public generateFork(fork : Fourche)]
+[for (branche : Activite | fork.branches)]
+[for (initVar : InitVariable | branche.actions->filter(InitVariable)->select(iv : InitVariable | iv.valeurInitiale = null or iv.valeurInitiale = ''))]
+		[initVar.type.toString().toLowerCase()/]['['/][']'/] [initVar.nomVariable/] = new [initVar.type.toString().toLowerCase()/]['['/]1[']'/];
+[/for]
+[/for]
+[for (branche : Activite | fork.branches)]
+		Thread thread[i/] = new Thread(() -> {
+[generateBrancheComputations(branche)/]
+		});
+[/for]
+[for (branche : Activite | fork.branches)]
+		thread[i/].start();
+[/for]
+[/template]
+
+[template public generateBrancheComputations(act : Activite)]
+[let methodCalls : Sequence(AppelMethode) = act.actions->filter(AppelMethode)->asSequence()]
+[for (appel : AppelMethode | methodCalls)]
+[if (appel.resultat <> null and appel.resultat <> '')]
+			[appel.resultat/]['['/]0[']'/] = [appel.objetCible/].[appel.nomMethode/]([for (param : String | appel.parametres) separator(', ')][param/][/for]);
+[else]
+			[appel.objetCible/].[appel.nomMethode/]([for (param : String | appel.parametres) separator(', ')][param/][/for]);
+[/if]
+[/for]
+[/let]
+[/template]
+
+[template public generateJoin(join : Jonction)]
+		try {
+[for (branche : Activite | join.branches)]
+			thread[i/].join();
+[/for]
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+[/template]
+
+[template public generateComputations(act : Activite, proc : Processus)]
 [let initVars : Sequence(InitVariable) = act.actions->filter(InitVariable)->select(iv : InitVariable | iv.valeurInitiale = null or iv.valeurInitiale = '')->asSequence()]
 [let methodCalls : Sequence(AppelMethode) = act.actions->filter(AppelMethode)->asSequence()]
+[let branchVars : Set(String) = getBranchVarNames(proc)]
 [if (initVars->size() > 0 and methodCalls->size() > 0)]
 [let initVar : InitVariable = initVars->first()]
 [let appel : AppelMethode = methodCalls->first()]
 		[initVar.type.toString().toLowerCase()/] [initVar.nomVariable/];
-		[initVar.nomVariable/] = [appel.objetCible/].[appel.nomMethode/]([for (param : String | appel.parametres) separator(', ')][param/][/for]);
+		[initVar.nomVariable/] = [appel.objetCible/].[appel.nomMethode/]([for (param : String | appel.parametres) separator(', ')][if (branchVars->includes(param))][param/]['['/]0[']'/][else][param/][/if][/for]);
 [/let]
 [/let]
 [else]
 [for (appel : AppelMethode | methodCalls)]
-		[appel.objetCible/].[appel.nomMethode/]([for (param : String | appel.parametres) separator(', ')][param/][/for]);
+		[appel.objetCible/].[appel.nomMethode/]([for (param : String | appel.parametres) separator(', ')][if (branchVars->includes(param))][param/]['['/]0[']'/][else][param/][/if][/for]);
 [/for]
 [/if]
 [/let]
 [/let]
+[/let]
 [/template]
+

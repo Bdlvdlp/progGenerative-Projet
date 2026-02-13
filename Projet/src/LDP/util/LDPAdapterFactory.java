@@ -108,6 +108,14 @@ public class LDPAdapterFactory extends AdapterFactoryImpl {
 				return createAppelMethodeAdapter();
 			}
 			@Override
+			public Adapter caseFourche(Fourche object) {
+				return createFourcheAdapter();
+			}
+			@Override
+			public Adapter caseJonction(Jonction object) {
+				return createJonctionAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -264,6 +272,34 @@ public class LDPAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAppelMethodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link LDP.Fourche <em>Fourche</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see LDP.Fourche
+	 * @generated
+	 */
+	public Adapter createFourcheAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link LDP.Jonction <em>Jonction</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see LDP.Jonction
+	 * @generated
+	 */
+	public Adapter createJonctionAdapter() {
 		return null;
 	}
 

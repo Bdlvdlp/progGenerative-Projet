@@ -135,6 +135,20 @@ public class LDPSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case LDPPackage.FOURCHE: {
+				Fourche fourche = (Fourche)theEObject;
+				T result = caseFourche(fourche);
+				if (result == null) result = caseElementProcessus(fourche);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case LDPPackage.JONCTION: {
+				Jonction jonction = (Jonction)theEObject;
+				T result = caseJonction(jonction);
+				if (result == null) result = caseElementProcessus(jonction);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -286,6 +300,36 @@ public class LDPSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAppelMethode(AppelMethode object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Fourche</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Fourche</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFourche(Fourche object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Jonction</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Jonction</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseJonction(Jonction object) {
 		return null;
 	}
 

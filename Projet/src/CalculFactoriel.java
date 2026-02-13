@@ -1,4 +1,4 @@
-public class CalculFactorielle {
+public class CalculFactoriel {
 	
 	public static void main(String[] argv) {
 		int n = 6;

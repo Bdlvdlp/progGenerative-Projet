@@ -64,6 +64,8 @@ public class LDPFactoryImpl extends EFactoryImpl implements LDPFactory {
 			case LDPPackage.INIT_VARIABLE: return createInitVariable();
 			case LDPPackage.INSTANTIATION_OBJET: return createInstantiationObjet();
 			case LDPPackage.APPEL_METHODE: return createAppelMethode();
+			case LDPPackage.FOURCHE: return createFourche();
+			case LDPPackage.JONCTION: return createJonction();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -174,6 +176,28 @@ public class LDPFactoryImpl extends EFactoryImpl implements LDPFactory {
 	public AppelMethode createAppelMethode() {
 		AppelMethodeImpl appelMethode = new AppelMethodeImpl();
 		return appelMethode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Fourche createFourche() {
+		FourcheImpl fourche = new FourcheImpl();
+		return fourche;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Jonction createJonction() {
+		JonctionImpl jonction = new JonctionImpl();
+		return jonction;
 	}
 
 	/**

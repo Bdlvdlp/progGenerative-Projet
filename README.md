@@ -11,9 +11,25 @@ Génération de code Java à partir d'un modèle de processus LDP en utilisant E
 - Génération de code Java compilable et fonctionnel via le template Acceleo
 - Le code généré utilise les classes utilitaires Calcul.java et Logger.java fournies
 
-## Ce qui ne fonctionne pas
-
 ### Partie 2 : Séquences parallèles
 
-- Fork/Join non implémentés dans le méta-modèle
-- Pas de génération de threads Java ni de synchronisation
+- Méta-modèle étendu avec Fourche et Jonction (héritent de ElementProcessus)
+- Modèle XMI d'exemple avec 2 branches parallèles (square et factorial)
+- Génération de threads Java pour les séquences parallèles (lambda + Thread)
+- Synchronisation via join() à la jonction
+- Gestion de la portée des variables entre threads (tableaux à 1 élément)
+- Code généré compilable et fonctionnel, testé avec succès
+- Template Acceleo rétrocompatible : les modèles sans fourche/jonction (séquence simple) continuent de générer du code correct
+
+## Ce qui ne fonctionne pas
+
+- Rien à signaler, les deux parties sont fonctionnelles
+
+## Structure du projet
+
+- `Projet/metamodels/LDP.ecore` — Méta-modèle Ecore
+- `Projet/model/CalculFactoriel.xmi` — Modèle séquence simple
+- `Projet/model/ExempleParallele.xmi` — Modèle séquences parallèles
+- `acceleo.LDP/src/acceleo/LDP/common/generateLDP.mtl` — Générateur Acceleo
+- `Projet/src/Calcul.java` — Classe utilitaire de calcul
+- `Projet/src/Logger.java` — Classe utilitaire d'affichage
